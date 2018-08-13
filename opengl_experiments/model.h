@@ -2,11 +2,14 @@
 #include <inttypes.h>
 #include <GL/glew.h>
 
+#include "fbmath.h"
+
 namespace fb {
 
 	class Model {
 	public:
 		Model(float* pos, int posLen, float* normals, int normalsLen, float* uvs, int uvsLen);
+		//void render(Vec3 pos);
 
 		float* _positions;
 		float* _normals;
