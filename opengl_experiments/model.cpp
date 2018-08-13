@@ -18,6 +18,12 @@ fb::Model::Model(float* pos, int posLen, float* normals, int normalsLen, float* 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
 
+	glGenBuffers(1, &_vbTex);
+	glBindBuffer(GL_ARRAY_BUFFER, _vbTex);
+	glBufferData(GL_ARRAY_BUFFER, _uvsLen * 2 * 4, _uvs, GL_STATIC_DRAW);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
+	glEnableVertexAttribArray(1);
+
 	glBindVertexArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
