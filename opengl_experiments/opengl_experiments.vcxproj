@@ -72,7 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Programs\assimp\include;D:\Projects\C++\libs\glew-2.1.0\include;D:\Projects\C++\libs\SDL2_0_8_VS\SDL2-2.0.8\include;C:\Users\Public\Documents\Programming\Libraries\zoidcom-0.6.11\zoidcom\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Projects\C++\libs\glm;D:\Programs\assimp\include;D:\Projects\C++\libs\glew-2.1.0\include;D:\Projects\C++\libs\SDL2_0_8_VS\SDL2-2.0.8\include;C:\Users\Public\Documents\Programming\Libraries\zoidcom-0.6.11\zoidcom\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Programs\Assimp\lib\x86;D:\Projects\C++\libs\glew-2.1.0\lib\Release\Win32;D:\Projects\C++\libs\SDL2_0_8_VS\SDL2-2.0.8\lib\x86;C:\Users\Public\Documents\Programming\Libraries\zoidcom-0.6.11\zoidcom\lib\msvc8;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
