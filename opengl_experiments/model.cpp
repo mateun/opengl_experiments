@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "model.h"
+#include <glm/gtc/type_ptr.hpp>
 
 fb::Model::Model(float* pos, int posLen, float* normals, int normalsLen, float* uvs, int uvsLen) {
 	_positions = pos;
@@ -32,5 +33,28 @@ fb::Model::Model(float* pos, int posLen, float* normals, int normalsLen, float* 
 
 	glBindVertexArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+}
+
+void fb::Model::render(glm::mat4 translationMatrix, glm::mat4 viewMatrix, glm::mat4 projMatrix, glm::mat4 rotMatrix, 
+	glm::mat4 scaleMatrix, ShaderProgram shader, Texture texture, glm::vec3 lightPos)
+{
+	glUseProgram(shader._progHandle);
+
+	glm::mat4 mwv = glm::mat4(1.0f);
+	mwv = viewMatrix * translationMatrix * rotMatrix * scaleMatrix;
+
+	GLuint mwvId = glGetUniformLocation(shader._progHandle, "mwv");
+	GLuint mpId = glGetUniformLocation(shader._progHandle, "mp");
+
+	glUniformMatrix4fv(mwvId, 1, false, glm::value_ptr(mwv));
+	glUniformMatrix4fv(mpId, 1, false, glm::value_ptr(projMatrix));
+	glUniform3fv(0, 1, glm::value_ptr(lightPos));
+
+	texture.bind();
+	glBindVertexArray(_vao);
+	glDrawArrays(GL_TRIANGLES, 0, _posLen);
+	glBindVertexArray(0);
+	texture.unbind();
 
 }
