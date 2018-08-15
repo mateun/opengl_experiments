@@ -11,6 +11,8 @@ namespace fb {
 		void bind();
 		void unbind();
 		GLuint _textureHandle;
+		int w;
+		int h;
 	
 	};
 }

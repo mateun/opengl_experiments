@@ -6,8 +6,11 @@ fb::Texture::Texture(const char * imageFileName, bool transparentBitmap)
 	
 	glGenTextures(1, &_textureHandle);
 	glBindTexture(GL_TEXTURE_2D, _textureHandle);
+	
 
 	SDL_Surface* surface = SDL_LoadBMP(imageFileName);
+	w = surface->w;
+	h = surface->h;
 	if (transparentBitmap) 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, surface->w, surface->h, 0, GL_BGR, GL_UNSIGNED_BYTE, surface->pixels);
 	else 

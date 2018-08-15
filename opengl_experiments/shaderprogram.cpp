@@ -59,3 +59,14 @@ fb::ShaderProgram::ShaderProgram(const char * vsFileName, const char * fsFileNam
 	glDeleteShader(fshader);
 }
 
+fb::ShaderProgram fb::ShaderManager::createShader(const std::string & vsFileName, const std::string & fsFileName, const std::string & shaderName)
+{
+	ShaderProgram sp(vsFileName.c_str(), fsFileName.c_str());
+	_shaderMap[shaderName] = sp;
+	return sp;
+}
+
+fb::ShaderProgram fb::ShaderManager::getShader(const std::string & shaderName)
+{
+	return _shaderMap[shaderName];
+}
