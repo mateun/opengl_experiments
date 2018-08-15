@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClInclude Include="camera.h" />
     <ClInclude Include="fbmath.h" />
+    <ClInclude Include="framebuffer.h" />
     <ClInclude Include="geometry.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="shaderprogram.h" />
@@ -166,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="framebuffer.cpp" />
     <ClCompile Include="geometry.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="opengl_experiments.cpp" />

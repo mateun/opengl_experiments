@@ -21,7 +21,7 @@ void fb::Sprite::render(int screenX, int screenY, int depth)
 	// the triangle winding will be culled.
 	glm::mat4 orthoscale = glm::scale(glm::mat4(1.0f), glm::vec3(_tex.w * _scaleX, _tex.h *_scaleY * -1, 1));
 	glm::mat4 orthotransl = glm::translate(glm::mat4(1.0f), glm::vec3(screenX, screenY, depth));
-	glm::mat4 orthov = glm::lookAtRH(glm::vec3(0, 0, 5), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+	glm::mat4 orthov = glm::lookAtRH(glm::vec3(0, 0, 10), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 	GLuint mpIndex = glGetUniformLocation(shader2d._progHandle, "mp");
 	GLuint mwvIndex = glGetUniformLocation(shader2d._progHandle, "mwv");
 
