@@ -9,14 +9,11 @@ in vec3 fs_pos;
 layout (location = 0) uniform vec3 u_light_pos;
 
 void main(void ) {
-	//color = vec4(1,1,0.5,1);
-  //color = texture(sampler, fs_uvs);
-  
-  //vec3 lightPos = vec3(0, 2, 5);
+	
   vec3 lightVector = normalize(u_light_pos - fs_pos);
   float diffuse = max(dot(fs_normals, lightVector), 0.1);
   
   color = texture(sampler, fs_uvs) * diffuse;
-  //color = vec4(fs_normals, 1);
-  //color = vec4(0.5, 0.5,0.5,1) * diffuse;
+  color.a = 1;
+  
 }
