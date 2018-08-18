@@ -27,14 +27,16 @@ fb::ShaderProgram::ShaderProgram(const char * vsFileName, const char * fsFileNam
 	GLuint vshader = glCreateShader(GL_VERTEX_SHADER);
 	const std::string vsstring = readCodeFromFile(vsFileName);
 	const GLchar* vssource_char = vsstring.c_str();
-	SDL_Log("vs source: %s", vssource_char);
+	
 	glShaderSource(vshader, 1, &vssource_char, NULL);
 	glCompileShader(vshader);
 	GLint compileStatus;
 	glGetShaderiv(vshader, GL_COMPILE_STATUS, &compileStatus);
 	SDL_Log("vshader compile status: %d", compileStatus);
 	if (GL_FALSE == compileStatus) {
-		SDL_Log("problem with shader!!");
+		SDL_Log("problem with vshader!!");
+		SDL_Log("vs source: %s", vssource_char);
+		exit(1);
 	}
 
 
@@ -45,6 +47,11 @@ fb::ShaderProgram::ShaderProgram(const char * vsFileName, const char * fsFileNam
 	glCompileShader(fshader);
 	glGetShaderiv(fshader, GL_COMPILE_STATUS, &compileStatus);
 	SDL_Log("fshader compile status: %d", compileStatus);
+	if (GL_FALSE == compileStatus) {
+		SDL_Log("problem with fshader!!");
+		SDL_Log("fs source: %s", fssource_char);
+		exit(1);
+	}
 
 	_progHandle = glCreateProgram();
 	glAttachShader(_progHandle, vshader);

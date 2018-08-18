@@ -14,7 +14,7 @@ namespace fb {
 		Model(float* pos, int posLen, float* normals, int normalsLen, float* uvs, int uvsLen);
 		void render(glm::mat4 translationMatrix, glm::mat4 viewMatrix, glm::mat4 projMatrix, glm::mat4 rotMatrix, 
 				glm::mat4 scaleMatrix, ShaderProgram shader,
-				Texture texture, glm::vec3 lightPos);
+				Texture texture, glm::vec3 lightPos, Texture* shadowMap);
 
 		float* _positions;
 		float* _normals;

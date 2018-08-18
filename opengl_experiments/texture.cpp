@@ -24,8 +24,9 @@ fb::Texture::Texture(const char * imageFileName, bool transparentBitmap)
 	SDL_FreeSurface(surface);
 }
 
-void fb::Texture::bind()
+void fb::Texture::bind(GLuint unit)
 {
+	glActiveTexture(GL_TEXTURE0 + unit);
 	glBindTexture(GL_TEXTURE_2D, _textureHandle);
 }
 

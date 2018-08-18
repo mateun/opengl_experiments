@@ -13,8 +13,9 @@ namespace fb {
 			_scaleX = sx;
 			_scaleY = sy;
 		}
-	private:
 		Texture _tex;
+	private:
+		
 		ShaderManager _shaderManager;
 		int _screenWidth;
 		int _screenHeight;

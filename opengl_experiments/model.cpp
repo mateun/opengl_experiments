@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "model.h"
 #include <glm/gtc/type_ptr.hpp>
+#include "camera.h"
 
 fb::Model::Model(float* pos, int posLen, float* normals, int normalsLen, float* uvs, int uvsLen) {
 	_positions = pos;
@@ -37,7 +38,7 @@ fb::Model::Model(float* pos, int posLen, float* normals, int normalsLen, float* 
 }
 
 void fb::Model::render(glm::mat4 translationMatrix, glm::mat4 viewMatrix, glm::mat4 projMatrix, glm::mat4 rotMatrix, 
-	glm::mat4 scaleMatrix, ShaderProgram shader, Texture texture, glm::vec3 lightPos)
+	glm::mat4 scaleMatrix, ShaderProgram shader, Texture texture, glm::vec3 lightPos, Texture* shadowMap)
 {
 	glUseProgram(shader._progHandle);
 
@@ -51,10 +52,25 @@ void fb::Model::render(glm::mat4 translationMatrix, glm::mat4 viewMatrix, glm::m
 	glUniformMatrix4fv(mpId, 1, false, glm::value_ptr(projMatrix));
 	glUniform3fv(0, 1, glm::value_ptr(lightPos));
 
-	texture.bind();
+	// Provide the light matrix
+	if (shadowMap) {
+		fb::Camera lightCam(lightPos, glm::vec3(0, 0, 0));
+		lightCam.initializeOrthographic(-30, 30, -30, 30);
+		glm::mat4 lightMV = lightCam.view * translationMatrix * rotMatrix * scaleMatrix;
+		GLuint lightViewId = glGetUniformLocation(shader._progHandle, "lightView");
+		GLuint lightProjId = glGetUniformLocation(shader._progHandle, "lightProj");
+		glUniformMatrix4fv(lightViewId, 1, false, glm::value_ptr(lightMV));
+		glUniformMatrix4fv(lightProjId, 1, false, glm::value_ptr(lightCam.proj));
+	}
+
+	texture.bind(0);
+	if (shadowMap) {
+		shadowMap->bind(1);
+	}
 	glBindVertexArray(_vao);
 	glDrawArrays(GL_TRIANGLES, 0, _posLen);
 	glBindVertexArray(0);
 	texture.unbind();
+	if (shadowMap) shadowMap->unbind();
 
 }

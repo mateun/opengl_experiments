@@ -8,7 +8,7 @@ namespace fb {
 	public: 
 		Texture() {}
 		Texture(const char* imageFileName, bool transparentBitmap);
-		void bind();
+		void bind(GLuint unit);
 		void unbind();
 		GLuint _textureHandle;
 		int w;

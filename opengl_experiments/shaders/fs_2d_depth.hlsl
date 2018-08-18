@@ -1,6 +1,6 @@
 #version 430 core
 
-uniform sampler2D sampler;
+layout (binding = 0) uniform sampler2D sampler;
 out vec4 color;
 in vec2 fs_uvs;
 

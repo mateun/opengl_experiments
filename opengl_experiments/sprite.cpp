@@ -29,7 +29,7 @@ void fb::Sprite::renderFlippedDepth(int screenX, int screenY, int depth)
 	GLuint mwvIndex = glGetUniformLocation(shader2d._progHandle, "mwv");
 
 	glUseProgram(shader2d._progHandle);
-	_tex.bind();
+	_tex.bind(0);
 	glUniformMatrix4fv(mwvIndex, 1, false, glm::value_ptr(orthov * orthotransl * orthoscale));
 	glUniformMatrix4fv(mpIndex, 1, false, glm::value_ptr(orthomp));
 	glBindVertexArray(fb::getQuad().vao);
@@ -61,7 +61,7 @@ void fb::Sprite::renderFlipped(int screenX, int screenY, int depth)
 	GLuint mwvIndex = glGetUniformLocation(shader2d._progHandle, "mwv");
 
 	glUseProgram(shader2d._progHandle);
-	_tex.bind();
+	_tex.bind(0);
 	glUniformMatrix4fv(mwvIndex, 1, false, glm::value_ptr(orthov * orthotransl * orthoscale));
 	glUniformMatrix4fv(mpIndex, 1, false, glm::value_ptr(orthomp));
 	glBindVertexArray(fb::getQuad().vao);
@@ -88,7 +88,7 @@ void fb::Sprite::render(int screenX, int screenY, int depth)
 	GLuint mwvIndex = glGetUniformLocation(shader2d._progHandle, "mwv");
 
 	glUseProgram(shader2d._progHandle);
-	_tex.bind();
+	_tex.bind(0);
 	glUniformMatrix4fv(mwvIndex, 1, false, glm::value_ptr(orthov * orthotransl * orthoscale));
 	glUniformMatrix4fv(mpIndex, 1, false, glm::value_ptr(orthomp));
 	glBindVertexArray(fb::getQuad().vao);
