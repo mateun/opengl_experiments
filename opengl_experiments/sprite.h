@@ -8,6 +8,7 @@ namespace fb {
 		Sprite(Texture texture, ShaderManager shaderManager, int screenWidth, int screenHeight);
 		void render(int screenX, int screenY, int depth);
 		void renderFlipped(int screenX, int screenY, int depth);
+		void renderFlippedDepth(int screenX, int screenY, int depth);
 		void scale(float sx, float sy) {
 			_scaleX = sx;
 			_scaleY = sy;
