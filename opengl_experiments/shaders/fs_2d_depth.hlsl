@@ -10,9 +10,11 @@ in vec2 fs_uvs;
 float LinearizeDepth(in vec2 uv)
 {
     float zNear = 0.1;    // TODO: Replace by the zNear of your perspective projection
-    float zFar  = 50.0; // TODO: Replace by the zFar  of your perspective projection
+    float zFar  = 5000.0; // TODO: Replace by the zFar  of your perspective projection
     float depth = texture2D(sampler, uv).x;
-    return (2.0 * zNear) / (zFar + zNear - depth * (zFar - zNear));
+    //return (2.0 * zNear) / (zFar + zNear - depth * (zFar - zNear));
+    //return (depth * -2/(zFar - zNear) - (zFar + zNear) / (zFar - zNear);
+    return depth + 0.3f;
 }
 
 
