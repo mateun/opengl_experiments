@@ -17,19 +17,19 @@ fb::Model::Model(float* pos, int posLen, float* normals, int normalsLen, float* 
 	glGenBuffers(1, &_vbPos);
 	glBindBuffer(GL_ARRAY_BUFFER, _vbPos);
 	glBufferData(GL_ARRAY_BUFFER, _posLen * 3 * 4, _positions, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_TRUE, 0, 0);
 	glEnableVertexAttribArray(0);
 
 	glGenBuffers(1, &_vbTex);
 	glBindBuffer(GL_ARRAY_BUFFER, _vbTex);
 	glBufferData(GL_ARRAY_BUFFER, _uvsLen * 2 * 4, _uvs, GL_STATIC_DRAW);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_TRUE, 0, 0);
 	glEnableVertexAttribArray(1);
 
 	glGenBuffers(1, &_vbNorm);
 	glBindBuffer(GL_ARRAY_BUFFER, _vbNorm);
 	glBufferData(GL_ARRAY_BUFFER, _normalsLen * 3 * 4, _normals, GL_STATIC_DRAW);
-	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_TRUE, 0, 0);
 	glEnableVertexAttribArray(2);
 
 	glBindVertexArray(0);
@@ -56,6 +56,7 @@ void fb::Model::render(glm::mat4 translationMatrix, glm::mat4 viewMatrix, glm::m
 	if (shadowMap) {
 		fb::Camera lightCam(lightPos, glm::vec3(0, 0, 0));
 		lightCam.initializeOrthographic(-20, 20, -20, 20);
+		
 		glm::mat4 lightMV = lightCam.view * translationMatrix * rotMatrix * scaleMatrix;
 		GLuint lightViewId = glGetUniformLocation(shader._progHandle, "lightView");
 		GLuint lightProjId = glGetUniformLocation(shader._progHandle, "lightProj");

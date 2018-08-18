@@ -24,7 +24,7 @@ void main(void ) {
 	
   float shadow_factor = calcShadowFactor();
   vec3 lightVector = normalize(u_light_pos - vec3(0, 0, 0));
-  float diffuse = max(dot(fs_normals, lightVector), 0.1);
+  float diffuse = max(dot(fs_normals, lightVector), 0.2);
   
   color = texture(sampler, fs_uvs) * diffuse * shadow_factor;
   color.a = 1;
