@@ -55,7 +55,7 @@ void fb::Model::render(glm::mat4 translationMatrix, glm::mat4 viewMatrix, glm::m
 	// Provide the light matrix
 	if (shadowMap) {
 		fb::Camera lightCam(lightPos, glm::vec3(0, 0, 0));
-		lightCam.initializeOrthographic(-30, 30, -30, 30);
+		lightCam.initializeOrthographic(-20, 20, -20, 20);
 		glm::mat4 lightMV = lightCam.view * translationMatrix * rotMatrix * scaleMatrix;
 		GLuint lightViewId = glGetUniformLocation(shader._progHandle, "lightView");
 		GLuint lightProjId = glGetUniformLocation(shader._progHandle, "lightProj");
