@@ -11,6 +11,9 @@ namespace fb {
 		void initializePerspective(double fov);
 		void initializeOrthographic(double left, double right, double bottom, double top);
 
+		void updateCamera();
+
+		glm::vec3 pos;
 		glm::mat4 view;
 		glm::mat4 proj;
 	};

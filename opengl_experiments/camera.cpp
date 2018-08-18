@@ -2,15 +2,17 @@
 #include "camera.h"
 
 
-fb::Camera::Camera(glm::vec3 pos, glm::vec3 lookAtPoint)
+fb::Camera::Camera(glm::vec3 p, glm::vec3 lookAtPoint)
 {
-	view = glm::lookAtRH(pos, lookAtPoint, glm::vec3(0, 1, 0));
+	pos = p;
+	view = glm::lookAtRH(p, lookAtPoint, glm::vec3(0, 1, 0));
 }
 
-fb::Camera::Camera(glm::vec3 pos, glm::vec3 lookAtPoint, double fov, bool perspectiveProjection, int screenWidth, int screenHeight)
+fb::Camera::Camera(glm::vec3 p, glm::vec3 lookAtPoint, double fov, bool perspectiveProjection, int screenWidth, int screenHeight)
 {
 	
-	view = glm::lookAtRH(pos, lookAtPoint, glm::vec3(0, 1, 0));
+	pos = p;
+	view = glm::lookAtRH(p, lookAtPoint, glm::vec3(0, 1, 0));
 	if (perspectiveProjection == true)
 		proj = glm::perspectiveFovRH(fov, 2.0, 2.0, 0.1, 200.0);
 	else
@@ -27,3 +29,9 @@ void fb::Camera::initializeOrthographic(double left, double right, double bottom
 {
 	proj = glm::orthoRH(left, right, bottom, top, 0.1, 200.0);
 }
+
+void fb::Camera::updateCamera()
+{
+	view = glm::lookAtRH(pos, glm::vec3(0,0,0), glm::vec3(0, 1, 0));
+}
+
