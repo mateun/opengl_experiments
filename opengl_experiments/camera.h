@@ -24,6 +24,7 @@ namespace fb {
 		glm::vec3 _right;
 		glm::vec3 _up;
 		glm::vec3 _lookForward;
+		double _zFar;
 	};
 
 	

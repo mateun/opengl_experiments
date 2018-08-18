@@ -14,7 +14,7 @@ float LinearizeDepth(in vec2 uv)
     float depth = texture2D(sampler, uv).x;
     //return (2.0 * zNear) / (zFar + zNear - depth * (zFar - zNear));
     //return (depth * -2/(zFar - zNear) - (zFar + zNear) / (zFar - zNear);
-    return depth + 0.3f;
+    return depth + 0.2f;
 }
 
 
