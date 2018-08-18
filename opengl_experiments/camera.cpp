@@ -8,6 +8,7 @@ fb::Camera::Camera(glm::vec3 p, glm::vec3 forward, glm::vec3 right, glm::vec3 up
 	_forward = forward;
 	_right = right;
 	_up = up;
+	_lookForward = forward;
 	updateFromDirections();
 }
 
@@ -46,7 +47,7 @@ void fb::Camera::updateCamera()
 
 void fb::Camera::updateFromDirections()
 {
-	glm::vec3 target = pos + _forward;
-	view = glm::lookAtRH(pos, target, _up);
+	glm::vec3 target = pos + glm::normalize(_forward);
+	view = glm::lookAtRH(pos, target, glm::normalize(_up));
 }
 
