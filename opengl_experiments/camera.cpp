@@ -52,7 +52,7 @@ void fb::Camera::updateFromDirections()
 {
 	glm::vec3 target = pos + glm::normalize(_forward);
 	view = glm::lookAtRH(pos, target, glm::normalize(_up));
-	_rotMat = glm::mat4(glm::vec4(_right, 1), glm::vec4(_up, 1), glm::vec4(_forward, 1), glm::vec4(0, 0, 0, 1));
+	_rotMat = glm::mat4(glm::vec4(_right, 0), glm::vec4(_up, 0), glm::vec4(_forward, 0), glm::vec4(0, 0, 0, 0));
 }
 
 
